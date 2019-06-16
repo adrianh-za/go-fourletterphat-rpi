@@ -25,7 +25,7 @@ package main
 import (
 	"fmt"
 	"time"
-	flp "github.com/adrianh-za/go-fourletterphat"
+	flp "github.com/adrianh-za/go-fourletterphat-rpi"
 	"github.com/d2r2/go-i2c"
 )
 
