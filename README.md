@@ -1,4 +1,4 @@
-# four-letter-phat-rpi
+# Go-FourLetterPhat-RPi
 Library written in Go to allow controlling of the Pimoroni Four Letter pHAT (with HT16K33 controller onboard) with a Raspberry Pi.
 
 Product from Pimoroni
@@ -8,8 +8,8 @@ Product from Pimoroni
 
 ## Usage ##
 
-1) go get github.com/adrianh-za/four-letter-phat-rpi
-2) browse to $/go/src/github.com/adrianh-za/four-letter-phat-rpi/examples
+1) go get github.com/adrianh-za/go-fourletterphat-rpi
+2) browse to $/go/src/github.com/adrianh-za/go-fourletterphat-rpi/examples
 3) sudo -E go run main.go
 4) run until end
 
