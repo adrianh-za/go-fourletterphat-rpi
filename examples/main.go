@@ -42,8 +42,8 @@ func main() {
 	// Initialize the LED display
 	flp.Initialize(i2c)
 	flp.SetBrightness(i2c, 15)
-	
-	
+	flp.SetBlink(i2c, flp.BlinkOff)
+
 	// Lets display some static text
 	flp.WriteCharacters(i2c, "1")
 	time.Sleep(1 * time.Second)
@@ -65,6 +65,22 @@ func main() {
 	time.Sleep(1 * time.Second)
 	flp.ScrollCharacters(i2c, "SYMBOLS - {} [] () <> ,. /|\\ @#$~%^@&*+=_-;:'`", 250, true)
 	time.Sleep(1 * time.Second)
+	
+	// Lets do some blinking
+	flp.ScrollCharacters(i2c, " ** TEST BLINK **", 300, true)
+	time.Sleep(1 * time.Second)
+	flp.SetBlink(i2c, flp.BlinkOff)
+	flp.WriteCharacters(i2c, "OFF")
+	time.Sleep(4 * time.Second)
+	flp.SetBlink(i2c, flp.BlinkHalfHz)
+	flp.WriteCharacters(i2c, "1/2X")
+	time.Sleep(4 * time.Second)
+	flp.SetBlink(i2c, flp.Blink1Hz)
+	flp.WriteCharacters(i2c, " 1X")
+	time.Sleep(4 * time.Second)
+	flp.SetBlink(i2c, flp.Blink2Hz)
+	flp.WriteCharacters(i2c, " 2X")
+	time.Sleep(4 * time.Second)
 	
 	//Finish up
 	flp.ClearChars(i2c)

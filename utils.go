@@ -58,6 +58,11 @@ const (
  // Initialize sets up the LED display
 func Initialize(bus *i2c.I2C) (error) {
 	_, err := bus.WriteBytes([]byte{ AddressSystemSetup | AddressOscillator })
+
+	ClearChars(bus)
+	SetBrightness(bus, 15)
+	SetBlink(bus, BlinkOff)
+
 	return err
 }
 
