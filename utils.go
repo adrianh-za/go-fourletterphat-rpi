@@ -29,7 +29,8 @@ import (
 	"time"
 	"errors"
 	"strings"
-	"github.com/d2r2/go-i2c"
+	i2c "github.com/d2r2/go-i2c"
+	logger "github.com/d2r2/go-logger"
 )
 
 const (
@@ -57,13 +58,21 @@ const (
 
  // Initialize sets up the LED display
 func Initialize(bus *i2c.I2C) (error) {
-	_, err := bus.WriteBytes([]byte{ AddressSystemSetup | AddressOscillator })
+	// Change logger to not output Debug
+	logger.ChangePackageLogLevel("i2c", logger.InfoLevel)
 
+	// Instatiate LED device
+	_, err := bus.WriteBytes([]byte{ AddressSystemSetup | AddressOscillator })
+	if (err != nil) {
+		return err
+	}
+
+	// Ready the LED device
 	ClearChars(bus)
 	SetBrightness(bus, 15)
 	SetBlink(bus, BlinkOff)
 
-	return err
+	return nil
 }
 
 // SetBrightness sets the brightness of the LED display
@@ -201,7 +210,7 @@ func ScrollCharacters(bus *i2c.I2C, text string, delayMS int, pad bool) error {
 	return nil
 }
 
-// getIntFromBinaryChar returns the UINT16 represented by thespecified LEDChar.
+// getIntFromBinaryChar returns the UINT16 represented by the specified LEDChar.
 func getIntFromBinaryChar(binaryChar LEDChar) uint16 {
 	result, _ := strconv.ParseUint(string(binaryChar), 2, 16)
 	return uint16(result)

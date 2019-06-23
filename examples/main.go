@@ -26,7 +26,7 @@ import (
 	"fmt"
 	"time"
 	flp "github.com/adrianh-za/go-fourletterphat-rpi"
-	"github.com/d2r2/go-i2c"
+	i2c "github.com/d2r2/go-i2c"
 )
 
 func main() {
@@ -40,9 +40,7 @@ func main() {
 	}
 	
 	// Initialize the LED display
-	flp.Initialize(i2c)
-	flp.SetBrightness(i2c, 15)
-	flp.SetBlink(i2c, flp.BlinkOff)
+	flp.Initialize(i2c)	// Will set brightness to 15, will switch of blink, clears display
 
 	// Lets display some static text
 	flp.WriteCharacters(i2c, "1")
